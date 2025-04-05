@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Recipe Website</title>
+  <title>ENTR2210 Final Project</title>
   <style>
     :root {
       --bg: #f0f2f5;
@@ -150,7 +150,7 @@
 <body>
   <div class="container">
     <button class="toggle-dark" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
-    <h1>Delicious Recipes</h1>
+    <h1>ENTR2210 Store Recipes</h1>
     <input type="text" id="search" placeholder="Search recipes..." onkeyup="filterRecipes()">
     <div id="recipes"></div>
     <div class="pagination">
@@ -161,20 +161,20 @@
 
   <script>
     const recipes = [
-      { name: "Baked Lemon Sole", category: "American, Seafood", image: "Baked-Lemon-Sole.jpg", description: "Delicate, zesty, buttery fish baked to perfection.", link: "Baked-Lemon-Sole.html" },
-      { name: "Beef Quesadillas", category: "American, Beef", image: "Beef-Quesadillas.jpg", description: "Cheesy beef quesadillas packed with flavor.", link: "Beef-Quesadillas.html" },
-      { name: "Caesar Chicken", category: "American, Chicken", image: "Caesar-Chicken.jpg", description: "Juicy chicken baked in creamy Caesar dressing.", link: "Caesar-Chicken.html" },
-      { name: "Chicken Divan", category: "American, Chicken", image: "Chicken-Divan.jpg", description: "Creamy chicken and broccoli casserole with breadcrumb topping..", link: "Chicken-Divan.html" },
-      { name: "Chicken Paprikash", category: "Hungarian, Chicken", image: "Chicken-Paprikash.jpg", description: "Hungarian stew of chicken, paprika, and sour cream.", link: "Chicken-Paprikash.html" },
-      { name: "Cowboy Pasta Salad", category: "American, Beef", image: "Cowboy-Pasta-Salad.jpg", description: "Hearty pasta salad with beef, beans, and cheese.", link: "Cowboy-Pasta-Salad.html" },
-      { name: "Crispy Roasted Mini Potatoes", category: "Potatoes, Vegetarian", image: "Roased-Potatoes.jpg", description: "Crispy, flavourful roasted potatoes.", link: "Crispy-Roasted-Potatoes.html" },
-      { name: "Donairs", category: "Canadian, Beef", image: "Donair.jpg", description: "Canadian dish with spiced beef, pita, and sauce.", link: "Donairs.html" },
-      { name: "Hamburger Helper", category: "American, Beef", image: "Hamburger-Helper.jpg", description: "Homemade beef, pasta, and creamy sauce from nostalgia.", link: "Hamburger-Helper.html" },
-      { name: "Kimchi Spaghetti", category: "Korean, Pork", image: "Kimchi-Spaghetti.jpg", description: "Spicy and tangy spaghetti with bacon.", link: "Kimchi-Spaghetti.html" },
-      { name: "Sloppy Joe Skillet", category: "American, Beef", image: "Sloppy-Joe-Skillet.jpg", description: "Zesty beef topped with stuffing.", link: "Sloppy-Joe-Skillet.html" },
-      { name: "Spaghetti Bolognese", category: "American, Beef", image: "Spaghetti-Bolognese.jpg", description: "Italian pasta with rich, savory meat and tomato sauce.", link: "Spaghetti-Bolognese.html" },
-      { name: "Spicy Peanut Butter Noodles", category: "Thai, Vegetarian", image: "Peanut-Butter-Noodles.jpg", description: "Creamy and spicy instant noodles.", link: "Peanut-Butter-Noodles.html" },
-      { name: "Sweet and Spicy Tofu", category: "Asian, Vegetarian", image: "Sweet-Spicy-Tofu.jpg", description: "Crispy tofu in a sweet, tangy, spicy sauce.", link: "Sweet-Spicy-Tofu.html" }
+      { name: "Baked Lemon Sole", category: "American, Seafood", image: "images/Baked-Lemon-Sole.jpg", description: "Delicate, zesty, buttery fish baked to perfection.", link: "recipes/Baked-Lemon-Sole.html" },
+      { name: "Beef Quesadillas", category: "American, Beef", image: "images/Beef-Quesadillas.jpg", description: "Cheesy beef quesadillas packed with flavor.", link: "recipes/Beef-Quesadillas.html" },
+      { name: "Caesar Chicken", category: "American, Chicken", image: "images/Caesar-Chicken.jpg", description: "Juicy chicken baked in creamy Caesar dressing.", link: "recipes/Caesar-Chicken.html" },
+      { name: "Chicken Divan", category: "American, Chicken", image: "images/Chicken-Divan.jpg", description: "Creamy chicken and broccoli casserole with breadcrumb topping..", link: "recipes/Chicken-Divan.html" },
+      { name: "Chicken Paprikash", category: "Hungarian, Chicken", image: "images/Chicken-Paprikash.jpg", description: "Hungarian stew of chicken, paprika, and sour cream.", link: "recipes/Chicken-Paprikash.html" },
+      { name: "Cowboy Pasta Salad", category: "American, Beef", image: "images/Cowboy-Pasta-Salad.jpg", description: "Hearty pasta salad with beef, beans, and cheese.", link: "recipesCowboy-Pasta-Salad.html" },
+      { name: "Crispy Roasted Mini Potatoes", category: "Potatoes, Vegetarian", image: "images/Roased-Potatoes.jpg", description: "Crispy, flavourful roasted potatoes.", link: "recipesCrispy-Roasted-Potatoes.html" },
+      { name: "Donairs", category: "Canadian, Beef", image: "images/Donair.jpg", description: "Canadian dish with spiced beef, pita, and sauce.", link: "recipes/Donairs.html" },
+      { name: "Hamburger Helper", category: "American, Beef", image: "images/Hamburger-Helper.jpg", description: "Homemade beef, pasta, and creamy sauce from nostalgia.", link: "recipes/Hamburger-Helper.html" },
+      { name: "Kimchi Spaghetti", category: "Korean, Pork", image: "images/Kimchi-Spaghetti.jpg", description: "Spicy and tangy spaghetti with bacon.", link: "recipes/Kimchi-Spaghetti.html" },
+      { name: "Sloppy Joe Skillet", category: "American, Beef", image: "images/Sloppy-Joe-Skillet.jpg", description: "Zesty beef topped with stuffing.", link: "recipes/Sloppy-Joe-Skillet.html" },
+      { name: "Spaghetti Bolognese", category: "American, Beef", image: "images/Spaghetti-Bolognese.jpg", description: "Italian pasta with rich, savory meat and tomato sauce.", link: "recipes/Spaghetti-Bolognese.html" },
+      { name: "Spicy Peanut Butter Noodles", category: "Thai, Vegetarian", image: "images/Peanut-Butter-Noodles.jpg", description: "Creamy and spicy instant noodles.", link: "recipes/Peanut-Butter-Noodles.html" },
+      { name: "Sweet and Spicy Tofu", category: "Asian, Vegetarian", image: "images/Sweet-Spicy-Tofu.jpg", description: "Crispy tofu in a sweet, tangy, spicy sauce.", link: "recipes/Sweet-Spicy-Tofu.html" }
     ];
 
     let currentPage = 0;
