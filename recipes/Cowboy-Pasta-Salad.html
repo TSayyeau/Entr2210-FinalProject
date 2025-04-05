@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cowboy Pasta Salad - Recipe</title>
+  <style>
+    :root {
+      --bg: #f0f2f5;
+      --text: #333;
+      --card-bg: white;
+      --ingredient-bg: #e5e7eb;
+      --button-bg: #007BFF;
+      --button-hover: #0056b3;
+    }
+
+    body.dark {
+      --bg: #1a1a1a;
+      --text: #f2f2f2;
+      --card-bg: #2c2c2c;
+      --ingredient-bg: #3a3a3a;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    h1 {
+      margin: 50px 0 30px;
+      text-align: center;
+    }
+
+    .dish-image {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .ingredients h3,
+    .instructions h3 {
+      margin-bottom: 10px;
+    }
+
+    .ingredients ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .ingredient-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ingredient-bg);
+      padding: 6px 12px;
+      margin: 4px 0;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .aisle-button {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 3px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .aisle-button:hover {
+      background-color: var(--button-hover);
+    }
+
+    .instructions {
+      margin-top: 30px;
+    }
+
+    .instructions ol {
+      padding-left: 20px;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      color: var(--button-bg);
+      font-weight: bold;
+    }
+
+    .toggle-dark {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--text);
+      padding: 5px;
+      transition: transform 0.2s;
+    }
+
+    .toggle-dark:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="toggle-dark" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
+    <h1>Cowboy Pasta Salad</h1>
+    <img src="Cowboy-Pasta-Salad.jpg" alt="Cowboy Pasta Salad" class="dish-image" />
+
+    <div class="ingredients">
+      <h3>Ingredients:</h3>
+      <ul>
+        <li class="ingredient-item">
+          <span>3 lb pasta, mini farfalle or shells</span>
+          <button class="aisle-button">Pasta Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1 lb ground beef</span>
+          <button class="aisle-button">Meat Department</button>
+        </li>
+        <li class="ingredient-item">
+          <span>2 tbsp banana peppers, pickled</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1 tsp chili powder</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1 tsp cumin, ground</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>3/4 tsp garlic powder</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>3/4 tsp onion powder</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>3/4 tsp salt</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>  
+        <li class="ingredient-item">
+          <span>4-6 tbsp canned jalapeno peppers, diced</span>
+          <button class="aisle-button">International Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1 bell pepper, small dice</span>
+          <button class="aisle-button">Produce Department</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1 can black beans, rinsed and drained</span>
+          <button class="aisle-button">Canned Goods</button>
+        </li>  
+        <li class="ingredient-item">
+          <span>1 can corn</span>
+          <button class="aisle-button">Canned Goods</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1 pint cherry tomatoes, halved</span>
+          <button class="aisle-button">Produce Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1 cup cheddar cheese, cubed</span>
+          <button class="aisle-button">Dairy Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1 red onion, small dice</span>
+          <button class="aisle-button">Produce Department</button>
+        </li>  
+        <li class="ingredient-item">
+          <span>2 tbsp cilantro, chopped</span>
+          <button class="aisle-button">Produce Department</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1/2 lb bacon, thick center cut, cooked and chopped</span>
+          <button class="aisle-button">Meat Department</button>
+        </li>      
+      </ul>
+    </div>
+
+    <div class="ingredients">
+      <h3>Dressing:</h3>
+      <ul>
+        <li class="ingredient-item">
+          <span>1/3 cup ketchup</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1/3 cup mayonnaise</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1/3 cup sour cream (or plain Greek yogurt)</span>
+          <button class="aisle-button">Dairy Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1/4 cup salsa</span>
+          <button class="aisle-button">International</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1 1/2 tbsp brown sugar</span>
+          <button class="aisle-button">Baking Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1 tbsp Worcestershire sauce</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1 tbsp yellow mustard</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1 tbsp apple cider vinegar</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li>  
+        <li class="ingredient-item">
+          <span>1/4 tsp EACH paprika, salt, pepper</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="instructions">
+      <h3>Instructions:</h3>
+      <ol>
+        <li>Whisk all the dressing ingredients together. Set aside.</li>
+        <li>Cook pasta until al dente. Rinse with cold water and drain. Add to large bowl and toss with HALF the dressing.</li>
+        <li>Brown meat in a skillet. Drain off excess grease. Stir in chiles and all the spices. Transfer to a plate to cool.</li>
+        <li>Once meat is cooled, add all ingredients to bowl with the remaining dressing and mix well.</li>
+        <li>Add hot sauce for spicier, apple cider vinegar for tangier, brown sugar for less tangy if desired.</li>
+      </ol>
+    </div>
+
+    <a href="index.html" class="back-link">Back to Recipes</a>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+
+    function setThemeIcon() {
+      toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      setThemeIcon();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+      }
+      setThemeIcon();
+    });
+  </script>
+</body>
+</html>
