@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recipe Website</title>
+  <style>
+    :root {
+      --bg: #f0f2f5;
+      --text: #333;
+      --card-bg: white;
+      --button-bg: #007BFF;
+      --button-hover: #0056b3;
+    }
+
+    body.dark {
+      --bg: #1a1a1a;
+      --text: #f2f2f2;
+      --card-bg: #2c2c2c;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .toggle-dark {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--text);
+      padding: 5px;
+      transition: transform 0.2s;
+    }
+
+    .toggle-dark:hover {
+      transform: scale(1.2);
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      margin: 20px auto;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    a.recipe-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .recipe {
+      display: flex;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      text-align: left;
+      position: relative;
+    }
+
+    .recipe:hover {
+      transform: scale(1.02);
+    }
+
+    .recipe img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+
+    .recipe h2, .recipe p {
+      margin: 0;
+      text-align: left;
+    }
+
+    .category {
+      font-weight: bold;
+      color: #777;
+      margin: 5px 0;
+    }
+
+    .pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      background-color: var(--button-bg);
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pagination button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .favorite-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .favorite-btn.favorited {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="toggle-dark" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
+    <h1>Delicious Recipes</h1>
+    <input type="text" id="search" placeholder="Search recipes..." onkeyup="filterRecipes()">
+    <div id="recipes"></div>
+    <div class="pagination">
+      <button id="prevPage" onclick="changePage(-1)" disabled>Previous</button>
+      <button id="nextPage" onclick="changePage(1)">Next</button>
+    </div>
+  </div>
+
+  <script>
+    const recipes = [
+      { name: "Baked Lemon Sole", category: "American, Seafood", image: "Baked-Lemon-Sole.jpg", description: "Delicate, zesty, buttery fish baked to perfection.", link: "Baked-Lemon-Sole.html" },
+      { name: "Beef Quesadillas", category: "American, Beef", image: "Beef-Quesadillas.jpg", description: "Cheesy beef quesadillas packed with flavor.", link: "Beef-Quesadillas.html" },
+      { name: "Caesar Chicken", category: "American, Chicken", image: "Caesar-Chicken.jpg", description: "Juicy chicken baked in creamy Caesar dressing.", link: "Caesar-Chicken.html" },
+      { name: "Chicken Divan", category: "American, Chicken", image: "Chicken-Divan.jpg", description: "Creamy chicken and broccoli casserole with breadcrumb topping..", link: "Chicken-Divan.html" },
+      { name: "Chicken Paprikash", category: "Hungarian, Chicken", image: "Chicken-Paprikash.jpg", description: "Hungarian stew of chicken, paprika, and sour cream.", link: "Chicken-Paprikash.html" },
+      { name: "Cowboy Pasta Salad", category: "American, Beef", image: "Cowboy-Pasta-Salad.jpg", description: "Hearty pasta salad with beef, beans, and cheese.", link: "Cowboy-Pasta-Salad.html" },
+      { name: "Crispy Roasted Mini Potatoes", category: "Potatoes, Vegetarian", image: "Roased-Potatoes.jpg", description: "Crispy, flavourful roasted potatoes.", link: "Crispy-Roasted-Potatoes.html" },
+      { name: "Donairs", category: "Canadian, Beef", image: "Donair.jpg", description: "Canadian dish with spiced beef, pita, and sauce.", link: "Donairs.html" },
+      { name: "Hamburger Helper", category: "American, Beef", image: "Hamburger-Helper.jpg", description: "Homemade beef, pasta, and creamy sauce from nostalgia.", link: "Hamburger-Helper.html" },
+      { name: "Kimchi Spaghetti", category: "Korean, Pork", image: "Kimchi-Spaghetti.jpg", description: "Spicy and tangy spaghetti with bacon.", link: "Kimchi-Spaghetti.html" },
+      { name: "Sloppy Joe Skillet", category: "American, Beef", image: "Sloppy-Joe-Skillet.jpg", description: "Zesty beef topped with stuffing.", link: "Sloppy-Joe-Skillet.html" },
+      { name: "Spaghetti Bolognese", category: "American, Beef", image: "Spaghetti-Bolognese.jpg", description: "Italian pasta with rich, savory meat and tomato sauce.", link: "Spaghetti-Bolognese.html" },
+      { name: "Spicy Peanut Butter Noodles", category: "Thai, Vegetarian", image: "Peanut-Butter-Noodles.jpg", description: "Creamy and spicy instant noodles.", link: "Peanut-Butter-Noodles.html" },
+      { name: "Sweet and Spicy Tofu", category: "Asian, Vegetarian", image: "Sweet-Spicy-Tofu.jpg", description: "Crispy tofu in a sweet, tangy, spicy sauce.", link: "Sweet-Spicy-Tofu.html" }
+    ];
+
+    let currentPage = 0;
+    const recipesPerPage = 5;
+
+    function displayRecipes() {
+      const recipeContainer = document.getElementById('recipes');
+      recipeContainer.innerHTML = '';
+      const start = currentPage * recipesPerPage;
+      const end = start + recipesPerPage;
+
+      recipes.slice(start, end).forEach((recipe, index) => {
+        recipeContainer.innerHTML += `
+          <a href="${recipe.link}" class="recipe-link">
+            <div class="recipe">
+              <img src="${recipe.image}" alt="${recipe.name}">
+              <div>
+                <h2>${recipe.name}</h2>
+                <p class="category">${recipe.category}</p>
+                <p>${recipe.description}</p>
+              </div>
+              <span class="favorite-btn" onclick="toggleFavorite(event, ${start + index})" id="fav-${start + index}">&#9733;</span>
+            </div>
+          </a>
+        `;
+      });
+
+      document.getElementById('prevPage').disabled = currentPage === 0;
+      document.getElementById('nextPage').disabled = end >= recipes.length;
+    }
+
+    function toggleFavorite(event, index) {
+      event.preventDefault();
+      event.stopPropagation();
+      const star = document.getElementById(`fav-${index}`);
+      star.classList.toggle('favorited');
+    }
+
+    function changePage(direction) {
+      currentPage += direction;
+      displayRecipes();
+    }
+
+    function filterRecipes() {
+      const input = document.getElementById('search').value.toLowerCase();
+      const recipeCards = document.querySelectorAll('.recipe');
+
+      recipeCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(input)) {
+          card.parentElement.style.display = "block";
+        } else {
+          card.parentElement.style.display = "none";
+        }
+      });
+    }
+
+    function setThemeIcon() {
+      const toggleBtn = document.getElementById('themeToggle');
+      toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      setThemeIcon();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+      }
+      setThemeIcon();
+      displayRecipes();
+    });
+  </script>
+</body>
+</html>
