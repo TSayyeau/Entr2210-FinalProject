@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hamburger Helper - Recipe</title>
+  <style>
+    :root {
+      --bg: #f0f2f5;
+      --text: #333;
+      --card-bg: white;
+      --ingredient-bg: #e5e7eb;
+      --button-bg: #007BFF;
+      --button-hover: #0056b3;
+    }
+
+    body.dark {
+      --bg: #1a1a1a;
+      --text: #f2f2f2;
+      --card-bg: #2c2c2c;
+      --ingredient-bg: #3a3a3a;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    h1 {
+      margin: 50px 0 30px;
+      text-align: center;
+    }
+
+    .dish-image {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .ingredients h3,
+    .instructions h3 {
+      margin-bottom: 10px;
+    }
+
+    .ingredients ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .ingredient-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ingredient-bg);
+      padding: 6px 12px;
+      margin: 4px 0;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .aisle-button {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 3px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .aisle-button:hover {
+      background-color: var(--button-hover);
+    }
+
+    .instructions {
+      margin-top: 30px;
+    }
+
+    .instructions ol {
+      padding-left: 20px;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      color: var(--button-bg);
+      font-weight: bold;
+    }
+
+    .toggle-dark {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--text);
+      padding: 5px;
+      transition: transform 0.2s;
+    }
+
+    .toggle-dark:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="toggle-dark" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
+    <h1>Hamburger Helper</h1>
+    <img src="Hamburger-Helper.jpg" alt="Hamburger Helper" class="dish-image" />
+
+    <div class="ingredients">
+      <h3>Ingredients:</h3>
+      <ul>
+        <li class="ingredient-item">
+          <span>1 lb ground beef</span>
+          <button class="aisle-button">Meat Department</button>
+        </li>
+        <li class="ingredient-item">
+          <span>2 tbsp ketchup (or lard)</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>2 tsp Dijon mustard</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>2 tsp hot sauce (your favourite kind)</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>2 tsp garlic powder</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>2 tsp onion powder</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1 tsp seasoned salt</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1 tsp salt</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>  
+        <li class="ingredient-item">
+          <span>1 tsp pepper</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>2 cups pasta, macaroni, uncooked</span>
+          <button class="aisle-button">Pasta Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>3 cups broth (or water)</span>
+          <button class="aisle-button">Soup Aisle</button>
+        </li>  
+        <li class="ingredient-item">
+          <span>1/2 cup sour cream</span>
+          <button class="aisle-button">Dairy Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>2 cups cheddar cheese, shredded</span>
+          <button class="aisle-button">Dairy Aisle</button>
+        </li>      
+      </ul>
+    </div>
+
+    <div class="instructions">
+      <h3>Instructions:</h3>
+      <ol>
+        <li>Cook ground beef in a skillet until no longer pink. Drain grease and return meat to pan.</li>
+        <li>Reduce heat to low and add ketchup, mustard, hot sauce, seasonings, raw macaroni, and broth. Stir well to combine.</li>
+        <li>Cover and simmer 12-15 minutes or until macaroni is cooked through. </li>
+        <li>Remove pan from heat and stir in sour cream.</li>
+        <li>Return pan to warm burner and stir in cheese. Mix until well combined.</li>
+      </ol>
+    </div>
+
+    <a href="index.html" class="back-link">Back to Recipes</a>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+
+    function setThemeIcon() {
+      toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      setThemeIcon();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+      }
+      setThemeIcon();
+    });
+  </script>
+</body>
+</html>

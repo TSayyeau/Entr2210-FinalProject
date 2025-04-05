@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chicken Divan - Recipe</title>
+  <style>
+    :root {
+      --bg: #f0f2f5;
+      --text: #333;
+      --card-bg: white;
+      --ingredient-bg: #e5e7eb;
+      --button-bg: #007BFF;
+      --button-hover: #0056b3;
+    }
+
+    body.dark {
+      --bg: #1a1a1a;
+      --text: #f2f2f2;
+      --card-bg: #2c2c2c;
+      --ingredient-bg: #3a3a3a;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    h1 {
+      margin: 50px 0 30px;
+      text-align: center;
+    }
+
+    .dish-image {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .ingredients h3,
+    .instructions h3 {
+      margin-bottom: 10px;
+    }
+
+    .ingredients ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .ingredient-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ingredient-bg);
+      padding: 6px 12px;
+      margin: 4px 0;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .aisle-button {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 3px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .aisle-button:hover {
+      background-color: var(--button-hover);
+    }
+
+    .instructions {
+      margin-top: 30px;
+    }
+
+    .instructions ol {
+      padding-left: 20px;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      color: var(--button-bg);
+      font-weight: bold;
+    }
+
+    .toggle-dark {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--text);
+      padding: 5px;
+      transition: transform 0.2s;
+    }
+
+    .toggle-dark:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="toggle-dark" id="themeToggle" onclick="toggleDarkMode()">🌙</button>
+    <h1>Chicken Divan</h1>
+    <img src="Chicken-Divan.jpg" alt="Chicken Divan" class="dish-image" />
+
+    <div class="ingredients">
+      <h3>Ingredients:</h3>
+      <ul>
+        <li class="ingredient-item">
+          <span>1 lb chicken breasts, cut into 1" pieces</span>
+          <button class="aisle-button">Meat Department</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1 tbsp olive oil</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>Salt and pepper, to taste</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1/2 tsp paprika</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1/2 tsp onion powder</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1/2 tsp garlic powder</span>
+          <button class="aisle-button">Spice Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1/4 cup chicken broth</span>
+          <button class="aisle-button">Soup Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>12 oz broccoli florets, frozen</span>
+          <button class="aisle-button">Freezer Section</button>
+        </li>  
+        <li class="ingredient-item">
+          <span>1 can condensed cream of chicken soup</span>
+          <button class="aisle-button">Soup Aisle</button>
+        </li>
+        <li class="ingredient-item">
+          <span>1/4 cup mayo</span>
+          <button class="aisle-button">Condiment Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1/2 cup cheddar cheese, shredded</span>
+          <button class="aisle-button">Dairy Aisle</button>
+        </li>  
+        <li class="ingredient-item">
+          <span>1/2 cup breadcrumbs</span>
+          <button class="aisle-button">Dry Goods</button>
+        </li>
+        <li class="ingredient-item">
+          <span>2 tbsp butter, melted</span>
+          <button class="aisle-button">Dairy Aisle</button>
+        </li> 
+        <li class="ingredient-item">
+          <span>1 tsp lemon juice, fresh</span>
+          <button class="aisle-button">Produce Department</button>
+        </li>      
+      </ul>
+    </div>
+
+    <div class="instructions">
+      <h3>Instructions:</h3>
+      <ol>
+        <li>Preheat oven to 350F.</li>
+        <li>In a pan, cook chicken with the oil and seasonings (first 6 ingredients) until cooked completely.</li>
+        <li>Add the chicken and the broccoli into a greased baking dish.</li>
+        <li>Mix mayo, condensed soup, broth, and lemon juice. Pour over the chicken and broccoli and top with cheese.</li>
+        <li>Combine breadcrumbs and butter and sprinkle on top.</li>
+        <li>Bake for 25 minutes or until golden brown.</li>
+        <li>Allow to rest 5-10 minutes before serving. </li>
+      </ol>
+    </div>
+
+    <a href="index.html" class="back-link">Back to Recipes</a>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+
+    function setThemeIcon() {
+      toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      setThemeIcon();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+      }
+      setThemeIcon();
+    });
+  </script>
+</body>
+</html>
